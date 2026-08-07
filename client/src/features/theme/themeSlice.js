@@ -1,0 +1,29 @@
+import { createSlice } from '@reduxjs/toolkit';
+
+const getInitialTheme = () => {
+  const stored = localStorage.getItem('kavyakosh-theme');
+  if (stored) return stored;
+  return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+};
+
+const themeSlice = createSlice({
+  name: 'theme',
+  initialState: { mode: getInitialTheme() },
+  reducers: {
+    toggleTheme: (state) => {
+      state.mode = state.mode === 'dark' ? 'light' : 'dark';
+      localStorage.setItem('kavyakosh-theme', state.mode);
+      document.documentElement.classList.remove('dark', 'light');
+      document.documentElement.classList.add(state.mode);
+    },
+    setTheme: (state, action) => {
+      state.mode = action.payload;
+      localStorage.setItem('kavyakosh-theme', state.mode);
+      document.documentElement.classList.remove('dark', 'light');
+      document.documentElement.classList.add(state.mode);
+    },
+  },
+});
+
+export const { toggleTheme, setTheme } = themeSlice.actions;
+export default themeSlice.reducer;
