@@ -4,6 +4,7 @@ dotenv.config();
 export default {
   env: process.env.NODE_ENV || 'development',
   port: process.env.PORT || 5000,
+  serverUrl: process.env.SERVER_URL || 'http://localhost:5000',
   clientUrl: process.env.CLIENT_URL || 'http://localhost:5173',
   mongoUri: process.env.MONGODB_URI || 'mongodb://localhost:27017/kavyakosh',
   jwt: {

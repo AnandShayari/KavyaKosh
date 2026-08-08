@@ -30,7 +30,7 @@ if (config.oauth.google.clientId) {
     {
       clientID: config.oauth.google.clientId,
       clientSecret: config.oauth.google.clientSecret,
-      callbackURL: `http://localhost:${config.port}/api/auth/google/callback`,
+      callbackURL: `${process.env.SERVER_URL || 'http://localhost:5000'}/api/auth/google/callback`,
     },
     async (_accessToken, _refreshToken, profile, done) => {
       try {
@@ -51,7 +51,7 @@ if (config.oauth.github.clientId) {
     {
       clientID: config.oauth.github.clientId,
       clientSecret: config.oauth.github.clientSecret,
-      callbackURL: `http://localhost:${config.port}/api/auth/github/callback`,
+      callbackURL: `${process.env.SERVER_URL || 'http://localhost:5000'}/api/auth/github/callback`,
       scope: ['user:email'],
     },
     async (_accessToken, _refreshToken, profile, done) => {
