@@ -37,10 +37,8 @@ app.use('/api', routes);
 app.use(notFound);
 app.use(errorHandler);
 
-if (process.env.NODE_ENV !== 'production') {
-  app.listen(config.port, () => {
-    console.log(`KavyaKosh Server running on port ${config.port}`);
-  });
-}
+app.listen(config.port, () => {
+  console.log(`KavyaKosh Server running on port ${config.port}`);
+});
 
 export default app;
