@@ -1,0 +1,9 @@
+{
+  "name": "kavyakosh-fullstack",
+  "version": "1.0.0",
+  "description": "Unified Vercel Deployment for KavyaKosh",
+  "scripts": {
+    "postinstall": "cd server && npm install && cd ../client && npm install",
+    "build": "cd client && npm run build"
+  }
+}

@@ -11,9 +11,16 @@ server/.env
 # Build output
 client/dist/
 client/build/
+server/dist/
+
+# Vercel
+.vercel/
+client/.vercel/
+server/.vercel/
 
 # Logs
 *.log
+*.err
 client-dev.log
 client-dev.err
 server-dev.log
