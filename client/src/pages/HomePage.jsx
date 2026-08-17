@@ -16,10 +16,10 @@ export default function HomePage() {
 
   useEffect(() => {
     Promise.all([
-      api.get('/poetry/trending').then((r) => setTrending(r.data.data)).catch(() => {}),
-      api.get('/poetry/featured').then((r) => setFeatured(r.data.data)).catch(() => {}),
-      api.get('/books/featured').then((r) => setBooks(r.data.data)).catch(() => {}),
-      api.get('/stats').then((r) => setStats(r.data.data)).catch(() => {}),
+      api.get('/poetry/trending').then((r) => setTrending(r.data?.data || [])).catch(() => {}),
+      api.get('/poetry/featured').then((r) => setFeatured(r.data?.data || [])).catch(() => {}),
+      api.get('/books/featured').then((r) => setBooks(r.data?.data || [])).catch(() => {}),
+      api.get('/stats').then((r) => setStats(r.data?.data || null)).catch(() => {}),
     ]).finally(() => setLoading(false));
   }, []);
 
@@ -109,7 +109,7 @@ export default function HomePage() {
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {loading ? [...Array(3)].map((_, i) => <Skeleton key={i} className="h-48" />) :
-            trending.slice(0, 6).map((item, i) => (
+            trending?.slice(0, 6).map((item, i) => (
               <motion.div key={item._id} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.1 }}>
                 <Link to={`/poetry/${item._id}`}>
                   <Card hover className="h-full">
@@ -144,7 +144,7 @@ export default function HomePage() {
           </div>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
             {loading ? [...Array(4)].map((_, i) => <Skeleton key={i} className="h-72" />) :
-              books.map((book, i) => (
+              books?.map((book, i) => (
                 <motion.div key={book._id} initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: i * 0.1 }}>
                   <Link to={`/marketplace/${book._id}`}>
                     <Card hover className="!p-0 overflow-hidden">

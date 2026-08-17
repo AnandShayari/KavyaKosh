@@ -2,8 +2,13 @@
   "name": "kavyakosh-fullstack",
   "version": "1.0.0",
   "description": "Unified Vercel Deployment for KavyaKosh",
+  "type": "module",
+  "private": true,
+  "workspaces": [
+    "client",
+    "server"
+  ],
   "scripts": {
-    "postinstall": "cd server && npm install && cd ../client && npm install",
-    "build": "cd client && npm run build"
+    "build": "npm run build --workspace=client"
   }
 }
