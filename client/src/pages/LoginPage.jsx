@@ -17,6 +17,8 @@ export default function LoginPage() {
   const oauthError = searchParams.get('error');
   const { loading, error } = useSelector((s) => s.auth);
   const { register, handleSubmit, formState: { errors } } = useForm();
+  const apiUrl = import.meta.env.VITE_API_URL || '/api';
+  const apiOrigin = apiUrl.replace(/\/api\/?$/, '');
 
   const onSubmit = async (data) => {
     const result = await dispatch(loginUser(data));
@@ -69,8 +71,8 @@ export default function LoginPage() {
           </div>
 
           <div className="mt-6 flex gap-3">
-            <button onClick={() => window.location.href = `${import.meta.env.VITE_API_URL.replace('/api','')}/api/auth/google`} className="btn-secondary flex-1 text-sm !py-2.5">Google</button>
-            <button onClick={() => window.location.href = `${import.meta.env.VITE_API_URL.replace('/api','')}/api/auth/github`} className="btn-secondary flex-1 text-sm !py-2.5">GitHub</button>
+            <button onClick={() => window.location.href = `${apiOrigin}/api/auth/google`} className="btn-secondary flex-1 text-sm !py-2.5">Google</button>
+            <button onClick={() => window.location.href = `${apiOrigin}/api/auth/github`} className="btn-secondary flex-1 text-sm !py-2.5">GitHub</button>
           </div>
         </Card>
       </motion.div>
